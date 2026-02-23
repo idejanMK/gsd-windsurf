@@ -76,6 +76,20 @@ Type `/gsd/` in any Windsurf chat to see all commands with descriptions. Key com
 
 > **Tip:** After each major command, run `/clear` to start a fresh context window before the next command. GSD workflows are designed to run in clean context.
 
+## Uninstall
+
+**Windows (PowerShell):**
+```powershell
+.\uninstall.ps1
+```
+
+**macOS/Linux:**
+```bash
+./uninstall.sh
+```
+
+Removes all GSD files from `~/.codeium/windsurf/`. Your project `.planning/` directories are left untouched — delete them manually if needed.
+
 ## Architecture
 
 Windsurf has no subagent spawning (`Task()`). GSD agents are implemented as **role-switches**: Cascade reads the agent's instruction file and adopts that role for the duration of a workflow step, then drops it cleanly.
