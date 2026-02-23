@@ -37,17 +37,44 @@ The installer copies:
 
 ## Usage
 
-After install, use GSD commands in any Windsurf project:
+### Global install — works in every project
+
+GSD is installed **globally** into your Windsurf user profile (`~/.codeium/windsurf/`). You install it once and `/gsd/*` workflows are available in every Windsurf project automatically — no per-project setup required.
+
+### Activating in a new project
+
+Open any project in Windsurf and run:
 
 ```
-/gsd/new-project          — Initialize project (questioning → research → requirements → roadmap)
+/gsd/new-project
+```
+
+This creates a `.planning/` directory in your project root with all GSD artifacts (`PROJECT.md`, `ROADMAP.md`, `STATE.md`, `config.json`). The `.planning/` folder is project-specific — GSD tracks each project independently.
+
+### Resuming an existing project
+
+When returning to a project that already has `.planning/`:
+
+```
+/gsd/progress    — see where you left off and route to next action
+/gsd/resume-work — full context restoration from previous session
+```
+
+### Available commands
+
+Type `/gsd/` in any Windsurf chat to see all commands with descriptions. Key commands:
+
+```
+/gsd/new-project          — Initialize project (questioning -> research -> requirements -> roadmap)
 /gsd/discuss-phase [N]    — Capture design decisions for a phase
 /gsd/plan-phase [N]       — Create PLAN.md files with research + verification loop
 /gsd/execute-phase [N]    — Execute all plans for a phase
 /gsd/verify-work [N]      — Verify phase completion against requirements
-/gsd/progress             — Show project status
-/gsd/help                 — Full command reference
+/gsd/progress             — Show project status and route to next action
+/gsd/help                 — Full command reference (all 33 commands)
 ```
+
+> **Tip:** After each major command, run `/clear` to start a fresh context window before the next command. GSD workflows are designed to run in clean context.
 
 ## Architecture
 

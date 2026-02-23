@@ -5,7 +5,7 @@ $WINDSURF_WORKFLOWS = "$env:USERPROFILE\.codeium\windsurf\windsurf\workflows\gsd
 $WINDSURF_RULES = "$env:USERPROFILE\.codeium\windsurf\windsurf\rules"
 $SCRIPT_DIR = Split-Path -Parent $MyInvocation.MyCommand.Path
 
-Write-Host "GSD for Windsurf — Installing..."
+Write-Host "GSD for Windsurf - Installing..."
 Write-Host ""
 
 # Create target directories
