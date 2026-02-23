@@ -2,8 +2,13 @@
 # GSD for Windsurf - Uninstaller (macOS/Linux)
 
 GSD_HOME="$HOME/.codeium/windsurf/get-shit-done"
-WINDSURF_WORKFLOWS="$HOME/.codeium/windsurf/windsurf/workflows/gsd"
 RULE_FILE="$HOME/.codeium/windsurf/windsurf/rules/gsd-core.md"
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  WINDSURF_WORKFLOWS="/Library/Application Support/Windsurf/workflows/gsd"
+else
+  WINDSURF_WORKFLOWS="/etc/windsurf/workflows/gsd"
+fi
 
 echo "GSD for Windsurf - Uninstalling..."
 echo ""

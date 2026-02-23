@@ -4,8 +4,14 @@
 set -e
 
 GSD_HOME="$HOME/.codeium/windsurf/get-shit-done"
-WINDSURF_WORKFLOWS="$HOME/.codeium/windsurf/windsurf/workflows/gsd"
 WINDSURF_RULES="$HOME/.codeium/windsurf/windsurf/rules"
+
+# Global workflow path (system-level, works across all workspaces)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  WINDSURF_WORKFLOWS="/Library/Application Support/Windsurf/workflows/gsd"
+else
+  WINDSURF_WORKFLOWS="/etc/windsurf/workflows/gsd"
+fi
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "GSD for Windsurf — Installing..."

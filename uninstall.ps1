@@ -1,7 +1,7 @@
 # GSD for Windsurf - Uninstaller (Windows PowerShell)
 
 $GSD_HOME = "$env:USERPROFILE\.codeium\windsurf\get-shit-done"
-$WINDSURF_WORKFLOWS = "$env:USERPROFILE\.codeium\windsurf\windsurf\workflows\gsd"
+$WINDSURF_WORKFLOWS = "C:\ProgramData\Windsurf\workflows\gsd"
 $WINDSURF_RULES = "$env:USERPROFILE\.codeium\windsurf\windsurf\rules"
 
 Write-Host "GSD for Windsurf - Uninstalling..."
