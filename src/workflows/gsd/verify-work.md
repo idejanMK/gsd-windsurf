@@ -2,23 +2,7 @@
 description: Validate built features through conversational testing with persistent UAT state. Usage: /gsd/verify-work [phase]
 ---
 
-<!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->
-
-<purpose>
-Validate built features through conversational testing with persistent state. Creates UAT.md that tracks test progress, survives /clear, and feeds gaps into /gsd/plan-phase --gaps.
-
-User tests, Claude records. One test at a time. Plain text responses.
-</purpose>
-
-<philosophy>
-**Show expected, ask if reality matches.**
-
-Claude presents what SHOULD happen. User confirms or describes what's different.
-- "yes" / "y" / "next" / empty → pass
-- Anything else → logged as issue, severity inferred
-
-No Pass/Fail buttons. No severity questions. Just: "Here's what should happen. Does it?"
-</philosophy>
+<!-- GSD_HOME=~/.codeium/windsurf/get-shit-done | Show expected, ask if reality matches. User tests, Claude records. One test at a time. "yes"/"y"/empty=pass, else=issue. -->
 
 <process>
 
@@ -152,20 +136,7 @@ Proceed to `present_test`.
 
 Read Current Test section from UAT file.
 
-Display using checkpoint box format:
-```
-╔══════════════════════════════════════════════════════════════╗
-║  CHECKPOINT: Verification Required                           ║
-╚══════════════════════════════════════════════════════════════╝
-
-**Test {number}: {name}**
-
-{expected}
-
-──────────────────────────────────────────────────────────────
-→ Type "pass" or describe what's wrong
-──────────────────────────────────────────────────────────────
-```
+Display checkpoint box: `CHECKPOINT: Verification Required` with test number, name, expected behavior, then `→ Type "pass" or describe what's wrong`.
 
 Wait for user response (plain text, NOT ask_user_question).
 
@@ -303,14 +274,7 @@ Proceed to `plan_gap_closure`.
 
 [TOOL HARNESS: read_file, write_to_file, run_command, grep_search]
 
-Display banner:
-```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► PLANNING FIXES
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-◆ Spawning planner for gap closure...
-```
+Display: `GSD ► PLANNING FIXES`
 
 Initialize `iteration_count = 1`.
 
@@ -331,14 +295,7 @@ Initialize `iteration_count = 1`.
 
 [TOOL HARNESS: read_file, grep_search]
 
-Display banner:
-```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► VERIFYING FIX PLANS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-◆ Spawning plan checker...
-```
+Display: `GSD ► VERIFYING FIX PLANS`
 
 → ROLE SWITCH: Read GSD_AGENTS/gsd-plan-checker.md
   Act as gsd-plan-checker.
@@ -380,31 +337,10 @@ Use ask_user_question:
 
 ## 14. Present Ready
 
-```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► FIXES READY ✓
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-**Phase {X}: {Name}** — {N} gap(s) diagnosed, {M} fix plan(s) created
-
-| Gap | Root Cause | Fix Plan |
-|-----|------------|----------|
-| {truth 1} | {root_cause} | {phase}-{plan_id} |
-
-Plans verified and ready for execution.
-
-───────────────────────────────────────────────────────────────
+Display `GSD ► FIXES READY ✓` with gap/root-cause/fix-plan table.
 
 ## ▶ Next Up
-
-**Execute fixes** — run fix plans
-
-`/gsd/execute-phase {phase} --gaps-only`
-
-<sub>`/clear` first → fresh context window</sub>
-
-───────────────────────────────────────────────────────────────
-```
+`/gsd/execute-phase {phase} --gaps-only` (/clear first)
 
 </process>
 

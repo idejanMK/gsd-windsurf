@@ -2,16 +2,7 @@
 description: Create detailed phase plan (PLAN.md files) with research, verification loop, and auto-advance. Usage: /gsd/plan-phase [phase] [--auto] [--research] [--skip-research] [--gaps] [--skip-verify]
 ---
 
-<!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->
-
-<purpose>
-Create executable phase prompts (PLAN.md files) for a roadmap phase with integrated research and verification. Default flow: Research (if needed) → Plan → Verify → Done. Orchestrates gsd-phase-researcher, gsd-planner, and gsd-plan-checker agents with a revision loop (max 3 iterations).
-</purpose>
-
-<required_reading>
-Read before starting:
-- GSD_HOME/references/ui-brand.md
-</required_reading>
+<!-- GSD_HOME=~/.codeium/windsurf/get-shit-done -->
 
 <process>
 
@@ -86,14 +77,7 @@ If "Run discuss-phase first": Output "`/gsd/discuss-phase {X}`" → exit.
 
 **If RESEARCH.md missing OR `--research` flag:**
 
-Display banner:
-```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► RESEARCHING PHASE {X}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-◆ Spawning researcher...
-```
+Display: `GSD ► RESEARCHING PHASE {X}`
 
 → ROLE SWITCH: Read GSD_AGENTS/gsd-phase-researcher.md
   Act as gsd-phase-researcher.
@@ -161,14 +145,7 @@ Paths already known from previous steps:
 
 [TOOL HARNESS: read_file, write_to_file, run_command, grep_search]
 
-Display banner:
-```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► PLANNING PHASE {X}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-◆ Spawning planner...
-```
+Display: `GSD ► PLANNING PHASE {X}`
 
 → ROLE SWITCH: Read GSD_AGENTS/gsd-planner.md
   Act as gsd-planner.
@@ -204,14 +181,7 @@ Display banner:
 
 [TOOL HARNESS: read_file, grep_search]
 
-Display banner:
-```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► VERIFYING PLANS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-◆ Spawning plan checker...
-```
+Display: `GSD ► VERIFYING PLANS`
 
 → ROLE SWITCH: Read GSD_AGENTS/gsd-plan-checker.md
   Act as gsd-plan-checker.
@@ -279,12 +249,7 @@ Check `--auto` flag in arguments.
 
 **If `--auto` OR `auto_advance=true`:**
 
-Display banner:
-```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► AUTO-ADVANCING TO EXECUTE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-```
+Display: `GSD ► AUTO-ADVANCING TO EXECUTE`
 
 Output: "Run `/gsd/execute-phase {X} --auto` next — `/clear` first for fresh context window."
 
@@ -296,39 +261,11 @@ Output: "Run `/gsd/execute-phase {X} --auto` next — `/clear` first for fresh c
 </process>
 
 <offer_next>
-Output this markdown directly (not as a code block):
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► PHASE {X} PLANNED ✓
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-**Phase {X}: {Name}** — {N} plan(s) in {M} wave(s)
-
-| Wave | Plans | What it builds |
-|------|-------|----------------|
-| 1    | 01, 02 | [objectives] |
-| 2    | 03     | [objective]  |
-
-Research: {Completed | Used existing | Skipped}
-Verification: {Passed | Passed with override | Skipped}
-
-───────────────────────────────────────────────────────────────
+Display `GSD ► PHASE {X} PLANNED ✓` with wave/plan table and research/verification status.
 
 ## ▶ Next Up
-
-**Execute Phase {X}** — run all {N} plans
-
-`/gsd/execute-phase {X}`
-
-<sub>`/clear` first → fresh context window</sub>
-
-───────────────────────────────────────────────────────────────
-
-**Also available:**
-- `cat .planning/phases/{phase-dir}/*-PLAN.md` — review plans
-- `/gsd/plan-phase {X} --research` — re-research first
-
-───────────────────────────────────────────────────────────────
+`/gsd/execute-phase {X}` (/clear first)
+Also: `cat .planning/phases/{phase-dir}/*-PLAN.md` | `/gsd/plan-phase {X} --research`
 </offer_next>
 
 <success_criteria>

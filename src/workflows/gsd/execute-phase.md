@@ -2,22 +2,7 @@
 description: Execute all plans in a phase using wave-based execution. Usage: /gsd/execute-phase [phase] [--auto] [--gaps-only] [--no-transition]
 ---
 
-<!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->
-
-<purpose>
-Execute all plans in a phase using wave-based execution. Orchestrator stays lean — delegates plan execution to gsd-executor role-switches. Orchestrator: discover plans → analyze deps → group waves → execute agents → handle checkpoints → collect results.
-</purpose>
-
-<core_principle>
-Orchestrator coordinates, not executes. Each executor role-switch reads the full execute-plan workflow. Orchestrator: discover plans → analyze deps → group waves → execute → handle checkpoints → collect results.
-</core_principle>
-
-<required_reading>
-Read before starting:
-- GSD_HOME/references/ui-brand.md
-- GSD_HOME/references/checkpoints.md
-- GSD_HOME/references/tdd.md
-</required_reading>
+<!-- GSD_HOME=~/.codeium/windsurf/get-shit-done | Orchestrator coordinates only: discover plans → group waves → execute role-switches → collect results -->
 
 <process>
 
@@ -139,56 +124,15 @@ If ANY spot-check fails: report which plan failed. Use ask_user_question:
   - label: "Retry plan" — description: Re-enter executor role for this plan
   - label: "Continue with remaining" — description: Skip this plan, continue
 
-If pass:
-```
----
-## Wave {N} — Plan {plan_id} Complete ✓
+If pass: display `Wave {N} — Plan {plan_id} Complete ✓` with one-liner from SUMMARY.md and any deviations.
 
-{What was built — from SUMMARY.md one-liner}
-{Notable deviations, if any}
-{If more plans/waves: what this enables next}
----
-```
-
-**4. Handle checkpoints:**
-
-If executor role-switch returns a checkpoint (autonomous: false plan):
-
-Read `workflow.auto_advance` from config.json:
-
-**If auto_advance=true:**
-- `human-verify` type → auto-approve, log `⚡ Auto-approved checkpoint`
-- `decision` type → auto-select first option, log `⚡ Auto-selected: [option]`
-- `human-action` type → present to user (cannot automate auth gates)
-
-**Standard flow:**
-Present checkpoint using checkpoint box format from ui-brand.md.
-Wait for user response.
-Re-enter executor role with continuation context (completed tasks state + user response).
+**4. Handle checkpoints:** If executor returns checkpoint: if auto_advance=true → auto-approve human-verify/decision, present human-action. Standard: show checkpoint box, wait for user, re-enter executor with continuation context.
 
 **5. Proceed to next plan/wave.**
 
 ## 6. Aggregate Results
 
-After all waves:
-
-```
-## Phase {X}: {Name} Execution Complete
-
-**Waves:** {N} | **Plans:** {M}/{total} complete
-
-| Wave | Plans | Status |
-|------|-------|--------|
-| 1 | plan-01, plan-02 | ✓ Complete |
-| 2 | plan-03 | ✓ Complete |
-
-### Plan Details
-1. **{phase}-01**: [one-liner from SUMMARY.md]
-2. **{phase}-02**: [one-liner from SUMMARY.md]
-
-### Issues Encountered
-[Aggregate from SUMMARYs, or "None"]
-```
+Display `Phase {X}: {Name} Execution Complete` with waves/plans table, plan detail one-liners from SUMMARYs, and issues encountered.
 
 ## 7. Close Parent Artifacts (decimal phases only)
 
@@ -315,48 +259,13 @@ Display:
 
 Read and follow `GSD_WORKFLOWS/transition.md` inline (do NOT spawn as separate role-switch — orchestrator context already has phase completion data needed).
 
-**If not auto-advance:**
-
-```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► PHASE {X} COMPLETE ✓
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-───────────────────────────────────────────────────────────────
+**If not auto-advance:** Display `GSD ► PHASE {X} COMPLETE ✓`
 
 ## ▶ Next Up
-
-**Phase {X+1}: {next_phase_name}**
-
-`/gsd/discuss-phase {X+1}`
-
-<sub>`/clear` first → fresh context window</sub>
-
-───────────────────────────────────────────────────────────────
-
-**Also available:**
-- `/gsd/verify-work {X}` — run UAT testing first
-- `/gsd/plan-phase {X+1}` — skip discussion, plan directly
-
-───────────────────────────────────────────────────────────────
-```
+`/gsd/discuss-phase {X+1}` (/clear first)
+Also: `/gsd/verify-work {X}` | `/gsd/plan-phase {X+1}`
 
 </process>
-
-<context_efficiency>
-Orchestrator stays lean. Each executor role-switch reads the full execute-plan workflow and all plan files itself. Orchestrator only receives SUMMARY confirmation + spot-check results.
-</context_efficiency>
-
-<failure_handling>
-- **Executor returns checkpoint:** Present to user, re-enter executor with continuation context
-- **Spot-check fails:** Report, ask user: retry or continue
-- **Dependency chain breaks:** Wave 1 fails → Wave 2 dependents likely fail → user chooses attempt or skip
-- **Checkpoint unresolvable:** "Skip this plan?" or "Abort phase?" → record partial progress in STATE.md
-</failure_handling>
-
-<resumption>
-Re-run `/gsd/execute-phase {phase}` → step 4 finds completed SUMMARYs → skips them → resumes from first incomplete plan → continues wave execution.
-</resumption>
 
 <success_criteria>
 - [ ] Phase directory found with plans

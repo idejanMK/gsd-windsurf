@@ -2,42 +2,7 @@
 description: Initialize a new project — questioning, research, requirements, roadmap. Usage: /gsd/new-project [--auto]
 ---
 
-<!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->
-
-<purpose>
-Initialize a new project through unified flow: questioning, research (optional), requirements, roadmap. One workflow takes you from idea to ready-for-planning.
-</purpose>
-
-<required_reading>
-Read before starting:
-- GSD_HOME/references/ui-brand.md
-- GSD_HOME/references/questioning.md
-- GSD_HOME/templates/project.md
-- GSD_HOME/templates/requirements.md
-</required_reading>
-
-<auto_mode>
-## Auto Mode Detection
-
-Check if `--auto` flag is present in arguments.
-
-**If auto mode:**
-- Skip brownfield mapping offer (assume greenfield)
-- Skip deep questioning (extract context from provided document)
-- Config: YOLO mode implicit; ask depth/git/agents in Step 2a first
-- After config: run Steps 6-9 automatically with smart defaults
-
-**Document requirement:** Auto mode requires an idea document — file reference or pasted text.
-
-If no document content provided:
-```
-Error: --auto requires an idea document.
-
-Usage:
-  /gsd/new-project --auto @your-idea.md
-  /gsd/new-project --auto [paste or write your idea here]
-```
-</auto_mode>
+<!-- GSD_HOME=~/.codeium/windsurf/get-shit-done | auto: --auto skips questioning, uses Step 2a config, runs Steps 6-9. Requires idea doc. -->
 
 <process>
 
@@ -77,54 +42,10 @@ If "Map codebase first": Output "Run `/gsd/map-codebase` first, then return to `
 
 ## 2a. Auto Mode Config (auto mode only)
 
-Collect config upfront before processing the idea document.
+Ask with ask_user_question: Depth (Quick/Standard/Comprehensive), Git Tracking (Yes/No), Research (Yes/No), Plan Check (Yes/No), AI Models (Balanced/Quality/Budget).
 
-Use ask_user_question for each (allowMultiple: false):
-
-1. Depth: "How thorough should planning be?"
-   - label: "Quick" — description: Ship fast (3-5 phases, 1-3 plans each)
-   - label: "Standard (Recommended)" — description: Balanced scope and speed (5-8 phases, 3-5 plans each)
-   - label: "Comprehensive" — description: Thorough coverage (8-12 phases, 5-10 plans each)
-
-2. Git Tracking: "Commit planning docs to git?"
-   - label: "Yes (Recommended)" — description: Planning docs tracked in version control
-   - label: "No" — description: Keep .planning/ local-only
-
-3. Research: "Research before planning each phase?"
-   - label: "Yes (Recommended)" — description: Investigate domain, find patterns, surface gotchas
-   - label: "No" — description: Plan directly from requirements
-
-4. Plan Check: "Verify plans before execution?"
-   - label: "Yes (Recommended)" — description: Catch gaps before execution starts
-   - label: "No" — description: Execute plans without verification
-
-5. AI Models: "Which AI models for planning agents?"
-   - label: "Balanced (Recommended)" — description: Good quality/cost ratio
-   - label: "Quality" — description: Deeper analysis, more thorough
-   - label: "Budget" — description: Fastest, lowest cost
-
-Create `.planning/config.json` from selections (use GSD_HOME/templates/config.json as base):
-```json
-{
-  "mode": "yolo",
-  "depth": "[selected]",
-  "parallelization": false,
-  "commit_docs": true,
-  "model_profile": "[selected]",
-  "workflow": {
-    "research": true,
-    "plan_check": true,
-    "verifier": true,
-    "auto_advance": true
-  }
-}
-```
-
-If commit_docs = No: run_command: `echo ".planning/" >> .gitignore`
-
-run_command: `mkdir -p .planning`
-run_command: `git add .planning/config.json`
-run_command: `git commit -m "chore: add project config"`
+Create `.planning/config.json` (mode:yolo, commit_docs, workflow.research, workflow.plan_check, workflow.auto_advance=true). If commit_docs=No: `echo ".planning/" >> .gitignore`.
+run_command: `mkdir -p .planning && git add .planning/config.json && git commit -m "chore: add project config"`
 
 Proceed to Step 4 (skip Steps 3 and 5).
 
@@ -132,12 +53,7 @@ Proceed to Step 4 (skip Steps 3 and 5).
 
 **If auto mode:** Skip. Extract project context from provided document → Step 4.
 
-Display banner:
-```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► QUESTIONING
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-```
+Display: `GSD ► QUESTIONING`
 
 **Open the conversation (freeform, NOT ask_user_question):**
 
@@ -188,49 +104,17 @@ Use ask_user_question:
 
 If "Yes" and defaults.json exists: use those values, skip to commit config.
 
-Otherwise ask each setting:
+Ask each setting with ask_user_question:
+1. Mode: YOLO (Recommended) / Interactive
+2. Depth: Quick (3-5 phases) / Standard (5-8) / Comprehensive (8-12)
+3. Git Tracking: Yes (Recommended) / No
+4. Research before phase planning: Yes (Recommended) / No
+5. Plan Check before execution: Yes (Recommended) / No
+6. Verifier after phase: Yes (Recommended) / No
+7. AI Models: Balanced (Recommended) / Quality / Budget
 
-1. Mode: "How do you want to work?"
-   - label: "YOLO (Recommended)" — description: Auto-approve, just execute
-   - label: "Interactive" — description: Confirm at each step
-
-2. Depth: "How thorough should planning be?"
-   - label: "Quick" — description: Ship fast (3-5 phases)
-   - label: "Standard (Recommended)" — description: Balanced (5-8 phases)
-   - label: "Comprehensive" — description: Thorough (8-12 phases)
-
-3. Git Tracking: "Commit planning docs to git?"
-   - label: "Yes (Recommended)" — description: Tracked in version control
-   - label: "No" — description: Keep .planning/ local-only
-
-4. Research: "Research before planning each phase?"
-   - label: "Yes (Recommended)" — description: Investigate domain first
-   - label: "No" — description: Plan directly from requirements
-
-5. Plan Check: "Verify plans before execution?"
-   - label: "Yes (Recommended)" — description: Catch gaps early
-   - label: "No" — description: Skip verification
-
-6. Verifier: "Verify work after each phase?"
-   - label: "Yes (Recommended)" — description: Confirm deliverables match goals
-   - label: "No" — description: Trust execution
-
-7. AI Models: "Which AI models?"
-   - label: "Balanced (Recommended)" — description: Good quality/cost ratio
-   - label: "Quality" — description: Deeper analysis
-   - label: "Budget" — description: Fastest, lowest cost
-
-Create `.planning/config.json` from selections.
-
-If commit_docs = No: run_command: `echo ".planning/" >> .gitignore`
-
-run_command: `git add .planning/config.json`
-run_command: `git commit -m "chore: add project config"`
-
-## 5.5. Resolve Model Profile
-
-From config.json `model_profile`: quality / balanced / budget.
-This determines which model tier to use for researcher/roadmapper role-switches.
+Create `.planning/config.json` from selections. If commit_docs=No: `echo ".planning/" >> .gitignore`
+run_command: `git add .planning/config.json && git commit -m "chore: add project config"`
 
 ## 6. Research Decision
 
@@ -246,12 +130,7 @@ Use ask_user_question:
 
 **If "Research first":**
 
-Display banner:
-```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► RESEARCHING
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-```
+Display: `GSD ► RESEARCHING`
 
 run_command: `mkdir -p .planning/research`
 
@@ -318,14 +197,7 @@ Display: `✓ Pitfalls research complete`
 run_command: `git add .planning/research/`
 run_command: `git commit -m "docs: add project research"`
 
-Display:
-```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► RESEARCH COMPLETE ✓
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Key Findings: [from SUMMARY.md — stack, table stakes, watch-outs]
-```
+Display: `GSD ► RESEARCH COMPLETE ✓` + key findings from SUMMARY.md
 
 **If "Skip research":** Continue to Step 7.
 
@@ -333,12 +205,7 @@ Key Findings: [from SUMMARY.md — stack, table stakes, watch-outs]
 
 [TOOL HARNESS: read_file, write_to_file, run_command]
 
-Display banner:
-```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► DEFINING REQUIREMENTS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-```
+Display: `GSD ► DEFINING REQUIREMENTS`
 
 Read PROJECT.md → extract core value, constraints, scope boundaries.
 If research exists: read `research/FEATURES.md` → extract feature categories.
@@ -362,14 +229,7 @@ run_command: `git commit -m "docs: define v1 requirements"`
 
 [TOOL HARNESS: read_file, write_to_file, run_command]
 
-Display banner:
-```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► CREATING ROADMAP
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-◆ Spawning roadmapper...
-```
+Display: `GSD ► CREATING ROADMAP — spawning roadmapper...`
 
 → ROLE SWITCH: Read GSD_AGENTS/gsd-roadmapper.md
   Act as gsd-roadmapper.
@@ -416,46 +276,18 @@ run_command: `git commit -m "docs: create roadmap ([N] phases)"`
 
 ## 9. Done
 
-Display:
-```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- GSD ► PROJECT INITIALIZED ✓
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-**[Project Name]** — [N] phases | [X] requirements | Ready to build ✓
-
-| Artifact       | Location                    |
-|----------------|-----------------------------|
-| Project        | .planning/PROJECT.md        |
-| Config         | .planning/config.json       |
-| Research       | .planning/research/         |
-| Requirements   | .planning/REQUIREMENTS.md   |
-| Roadmap        | .planning/ROADMAP.md        |
-```
+Display: `GSD ► PROJECT INITIALIZED ✓` with artifact table (PROJECT.md, config.json, research/, REQUIREMENTS.md, ROADMAP.md)
 
 **If auto mode:**
 
 Output: "Run `/gsd/discuss-phase 1 --auto` next — `/clear` first for fresh context window"
 
-**If interactive mode:**
-
+**If interactive mode:** Output next step:
 ```
-───────────────────────────────────────────────────────────────
-
 ## ▶ Next Up
-
-**Phase 1: [Phase Name]** — [Goal from ROADMAP.md]
-
-`/gsd/discuss-phase 1`
-
-<sub>`/clear` first → fresh context window</sub>
-
-───────────────────────────────────────────────────────────────
-
-**Also available:**
-- `/gsd/plan-phase 1` — skip discussion, plan directly
-
-───────────────────────────────────────────────────────────────
+**Phase 1: [Phase Name]** — [Goal]
+`/gsd/discuss-phase 1`  (/clear first)
+Also: `/gsd/plan-phase 1` — skip discussion
 ```
 
 </process>

@@ -2,18 +2,7 @@
 description: Execute a single phase plan (PLAN.md) and create SUMMARY.md. Usually invoked by execute-phase, but can be run standalone. Usage: /gsd/execute-plan [phase] [plan]
 ---
 
-<!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->
-
-<purpose>
-Execute a phase prompt (PLAN.md) and create the outcome summary (SUMMARY.md). This workflow is both the standalone command AND the instructions followed by gsd-executor role-switches inside execute-phase.
-</purpose>
-
-<required_reading>
-Read before starting:
-- GSD_HOME/references/git-integration.md
-- GSD_HOME/references/tdd.md
-- GSD_HOME/references/checkpoints.md
-</required_reading>
+<!-- GSD_HOME=~/.codeium/windsurf/get-shit-done -->
 
 <process>
 
@@ -138,37 +127,14 @@ You WILL discover unplanned work. Apply automatically, track all for Summary.
 | **3: Blocking** | Prevents completion: missing deps, wrong types, broken imports, missing env/config/files, circular deps | Fix blocker → verify proceeds → track `[Rule 3 - Blocking]` | Auto |
 | **4: Architectural** | Structural change: new DB table, schema change, new service, switching libs, breaking API, new infra | STOP → present decision → track `[Rule 4 - Architectural]` | Ask user |
 
-**Rule 4 format:**
-```
-⚠️ Architectural Decision Needed
-
-Current task: [task name]
-Discovery: [what prompted this]
-Proposed change: [modification]
-Why needed: [rationale]
-Impact: [what this affects]
-Alternatives: [other approaches]
-
-Proceed with proposed change? (yes / different approach / defer)
-```
+**Rule 4 format:** `⚠️ Architectural Decision Needed` — Current task, Discovery, Proposed change, Why needed, Impact, Alternatives, then ask to proceed.
 
 **Priority:** Rule 4 (STOP) > Rules 1-3 (auto) > unsure → Rule 4
 
 </deviation_rules>
 
 <tdd_plan_execution>
-
-## TDD Execution
-
-For `type: tdd` plans — RED-GREEN-REFACTOR:
-
-1. **Infrastructure** (first TDD plan only): detect project, install framework, config, verify empty suite
-2. **RED:** Read `<behavior>` → write failing test(s) → run (MUST fail) → commit: `test({phase}-{plan}): add failing test for [feature]`
-3. **GREEN:** Read `<implementation>` → minimal code → run (MUST pass) → commit: `feat({phase}-{plan}): implement [feature]`
-4. **REFACTOR:** Clean up → tests MUST pass → commit: `refactor({phase}-{plan}): clean up [feature]`
-
-See GSD_REFERENCES/tdd.md for full structure.
-
+For `type: tdd` plans — RED-GREEN-REFACTOR: 1) Infrastructure (first plan only). 2) RED: write failing test → run (MUST fail) → commit `test(...)`. 3) GREEN: minimal code → run (MUST pass) → commit `feat(...)`. 4) REFACTOR: clean up → tests pass → commit `refactor(...)`. See GSD_REFERENCES/tdd.md.
 </tdd_plan_execution>
 
 <task_commit>
@@ -185,17 +151,7 @@ git add src/api/auth.ts
 git add src/types/user.ts
 ```
 
-**3. Commit format:** `{type}({phase}-{plan}): {description}`
-
-| Type | When |
-|------|------|
-| `feat` | New functionality |
-| `fix` | Bug fix |
-| `test` | Test-only (TDD RED) |
-| `refactor` | No behavior change (TDD REFACTOR) |
-| `perf` | Performance |
-| `docs` | Documentation |
-| `chore` | Config/deps |
+**3. Commit format:** `{type}({phase}-{plan}): {description}` — types: feat/fix/test/refactor/perf/docs/chore
 
 **4. Record hash:** Note commit hash for SUMMARY.
 
@@ -205,33 +161,15 @@ git add src/types/user.ts
 
 ## Checkpoint Protocol
 
-On `type="checkpoint:*"`: automate everything possible first. Checkpoints are for verification/decisions only.
-
-Display checkpoint box (from ui-brand.md format):
-```
-╔══════════════════════════════════════════════════════════════╗
-║  CHECKPOINT: [Type]                                          ║
-╚══════════════════════════════════════════════════════════════╝
-
-**Plan:** {plan_id} {Plan Name}
-**Progress:** {X}/{Y} tasks complete
-
-[Checkpoint Details]
-
-──────────────────────────────────────────────────────────────
-→ [ACTION PROMPT based on type]
-──────────────────────────────────────────────────────────────
-```
+On `type="checkpoint:*"`: automate first, then stop. Display box: `CHECKPOINT: [Type]` with plan, progress, details, action prompt.
 
 | Type | Content | Resume signal |
 |------|---------|---------------|
-| human-verify (90%) | What was built + verification steps | "approved" or describe issues |
-| decision (9%) | Decision needed + options with pros/cons | "Select: option-id" |
-| human-action (1%) | ONE manual step + verification plan | "done" |
+| human-verify (90%) | What was built + steps | "approved" or issues |
+| decision (9%) | Decision + options | "Select: option-id" |
+| human-action (1%) | ONE manual step | "done" |
 
-After response: verify if specified. Pass → continue. Fail → inform, wait. WAIT for user — do NOT hallucinate completion.
-
-See GSD_REFERENCES/checkpoints.md for full details.
+WAIT for user — do NOT hallucinate completion. See GSD_REFERENCES/checkpoints.md.
 
 </checkpoint_protocol>
 
