@@ -1,19 +1,21 @@
 # GSD for Windsurf - Uninstaller (Windows PowerShell)
 
 $GSD_HOME = "$env:USERPROFILE\.codeium\windsurf\get-shit-done"
-$WINDSURF_WORKFLOWS = "$env:USERPROFILE\.codeium\windsurf\global_workflows\gsd"
+$WINDSURF_WORKFLOWS = "$env:USERPROFILE\.codeium\windsurf\global_workflows"
 $WINDSURF_RULES = "$env:USERPROFILE\.codeium\windsurf\windsurf\rules"
 
 Write-Host "GSD for Windsurf - Uninstalling..."
 Write-Host ""
 
-# Remove workflows
-if (Test-Path $WINDSURF_WORKFLOWS) {
-    Remove-Item $WINDSURF_WORKFLOWS -Recurse -Force
-    Write-Host "  Removed: $WINDSURF_WORKFLOWS"
-} else {
-    Write-Host "  Not found (skipping): $WINDSURF_WORKFLOWS"
+# Remove workflows (gsd-*.md files + legacy gsd/ subfolder)
+$removed = 0
+Get-ChildItem "$WINDSURF_WORKFLOWS\gsd-*.md" -ErrorAction SilentlyContinue | ForEach-Object {
+    Remove-Item $_.FullName -Force
+    $removed++
 }
+if (Test-Path "$WINDSURF_WORKFLOWS\gsd") { Remove-Item "$WINDSURF_WORKFLOWS\gsd" -Recurse -Force; $removed++ }
+if ($removed -gt 0) { Write-Host "  Removed: $removed GSD workflow file(s) from $WINDSURF_WORKFLOWS" }
+else { Write-Host "  Not found (skipping): $WINDSURF_WORKFLOWS\gsd-*.md" }
 
 # Remove rule
 $RULE_FILE = "$WINDSURF_RULES\gsd-core.md"

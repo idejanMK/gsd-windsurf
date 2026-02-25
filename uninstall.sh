@@ -4,17 +4,21 @@
 GSD_HOME="$HOME/.codeium/windsurf/get-shit-done"
 RULE_FILE="$HOME/.codeium/windsurf/windsurf/rules/gsd-core.md"
 
-WINDSURF_WORKFLOWS="$HOME/.codeium/windsurf/global_workflows/gsd"
+WINDSURF_WORKFLOWS="$HOME/.codeium/windsurf/global_workflows"
 
 echo "GSD for Windsurf - Uninstalling..."
 echo ""
 
-# Remove workflows
-if [ -d "$WINDSURF_WORKFLOWS" ]; then
-    rm -rf "$WINDSURF_WORKFLOWS"
-    echo "  Removed: $WINDSURF_WORKFLOWS"
+# Remove workflows (gsd-*.md files + legacy gsd/ subfolder)
+removed=0
+for f in "$WINDSURF_WORKFLOWS"/gsd-*.md; do
+    [ -f "$f" ] && rm -f "$f" && removed=$((removed+1))
+done
+[ -d "$WINDSURF_WORKFLOWS/gsd" ] && rm -rf "$WINDSURF_WORKFLOWS/gsd" && removed=$((removed+1))
+if [ $removed -gt 0 ]; then
+    echo "  Removed: $removed GSD workflow file(s) from $WINDSURF_WORKFLOWS"
 else
-    echo "  Not found (skipping): $WINDSURF_WORKFLOWS"
+    echo "  Not found (skipping): $WINDSURF_WORKFLOWS/gsd-*.md"
 fi
 
 # Remove rule
