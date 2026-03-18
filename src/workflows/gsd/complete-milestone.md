@@ -1,5 +1,5 @@
 ---
-description: Mark a shipped version as complete. Creates historical record, evolves PROJECT.md, reorganizes ROADMAP.md, tags release. Usage: /gsd/complete-milestone
+description: "Mark a shipped version as complete. Creates historical record, evolves PROJECT.md, reorganizes ROADMAP.md, tags release. Usage: /gsd/complete-milestone"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

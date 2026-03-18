@@ -1,5 +1,5 @@
 ---
-description: Display the complete GSD command reference. Usage: /gsd/help
+description: "Display the complete GSD command reference. Usage: /gsd/help"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

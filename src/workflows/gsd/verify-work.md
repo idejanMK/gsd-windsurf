@@ -1,5 +1,5 @@
 ---
-description: Validate built features through conversational testing with persistent UAT state. Usage: /gsd/verify-work [phase]
+description: "Validate built features through conversational testing with persistent UAT state. Usage: /gsd/verify-work [phase]"
 ---
 
 <!-- GSD_HOME=~/.codeium/windsurf/get-shit-done | Show expected, ask if reality matches. User tests, Claude records. One test at a time. "yes"/"y"/empty=pass, else=issue. -->

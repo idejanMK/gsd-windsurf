@@ -1,5 +1,5 @@
 ---
-description: Execute discovery at appropriate depth level to inform plan creation. Usually invoked by plan-phase.
+description: "Execute discovery at appropriate depth level to inform plan creation. Usually invoked by plan-phase."
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

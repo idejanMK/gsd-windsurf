@@ -1,5 +1,5 @@
 ---
-description: Remove an unstarted future phase from the roadmap and renumber subsequent phases. Usage: /gsd/remove-phase <phase-number>
+description: "Remove an unstarted future phase from the roadmap and renumber subsequent phases. Usage: /gsd/remove-phase <phase-number>"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

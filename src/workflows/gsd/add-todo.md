@@ -1,5 +1,5 @@
 ---
-description: Capture an idea, task, or issue as a structured todo for later work. Usage: /gsd/add-todo [description]
+description: "Capture an idea, task, or issue as a structured todo for later work. Usage: /gsd/add-todo [description]"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

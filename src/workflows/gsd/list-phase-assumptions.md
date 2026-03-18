@@ -1,5 +1,5 @@
 ---
-description: Surface Claude's assumptions about a phase before planning to enable early corrections. Usage: /gsd/list-phase-assumptions <phase>
+description: "Surface Claude's assumptions about a phase before planning to enable early corrections. Usage: /gsd/list-phase-assumptions <phase>"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

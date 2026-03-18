@@ -1,5 +1,5 @@
 ---
-description: Create detailed phase plan (PLAN.md files) with research, verification loop, and auto-advance. Usage: /gsd/plan-phase [phase] [--auto] [--research] [--skip-research] [--gaps] [--skip-verify]
+description: "Create detailed phase plan (PLAN.md files) with research, verification loop, and auto-advance. Usage: /gsd/plan-phase [phase] [--auto] [--research] [--skip-research] [--gaps] [--skip-verify]"
 ---
 
 <!-- GSD_HOME=~/.codeium/windsurf/get-shit-done -->

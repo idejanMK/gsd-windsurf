@@ -1,5 +1,5 @@
 ---
-description: List pending todos, select one, and route to appropriate action. Usage: /gsd/check-todos [area]
+description: "List pending todos, select one, and route to appropriate action. Usage: /gsd/check-todos [area]"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

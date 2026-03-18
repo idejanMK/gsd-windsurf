@@ -1,5 +1,5 @@
 ---
-description: Check for GSD updates, display changelog, and install if confirmed. Usage: /gsd/update
+description: "Check for GSD updates, display changelog, and install if confirmed. Usage: /gsd/update"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

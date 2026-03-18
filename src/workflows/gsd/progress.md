@@ -1,5 +1,5 @@
 ---
-description: Check project progress, summarize recent work, and route to next action. Usage: /gsd/progress
+description: "Check project progress, summarize recent work, and route to next action. Usage: /gsd/progress"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

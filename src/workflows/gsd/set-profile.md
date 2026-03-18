@@ -1,5 +1,5 @@
 ---
-description: Switch the model profile used by GSD agents. Usage: /gsd/set-profile <quality|balanced|budget>
+description: "Switch the model profile used by GSD agents. Usage: /gsd/set-profile <quality|balanced|budget>"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

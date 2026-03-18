@@ -1,5 +1,5 @@
 ---
-description: Verify phase goal achievement through goal-backward analysis. Usually invoked by execute-phase. Usage: /gsd/verify-phase <phase>
+description: "Verify phase goal achievement through goal-backward analysis. Usually invoked by execute-phase. Usage: /gsd/verify-phase <phase>"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

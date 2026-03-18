@@ -1,5 +1,5 @@
 ---
-description: Execute all plans in a phase using wave-based execution. Usage: /gsd/execute-phase [phase] [--auto] [--gaps-only] [--no-transition]
+description: "Execute all plans in a phase using wave-based execution. Usage: /gsd/execute-phase [phase] [--auto] [--gaps-only] [--no-transition]"
 ---
 
 <!-- GSD_HOME=~/.codeium/windsurf/get-shit-done | Orchestrator coordinates only: discover plans → group waves → execute role-switches → collect results -->

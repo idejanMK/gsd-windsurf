@@ -1,5 +1,5 @@
 ---
-description: Verify milestone achieved its definition of done by aggregating phase verifications and checking cross-phase integration. Usage: /gsd/audit-milestone [version]
+description: "Verify milestone achieved its definition of done by aggregating phase verifications and checking cross-phase integration. Usage: /gsd/audit-milestone [version]"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

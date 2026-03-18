@@ -1,5 +1,5 @@
 ---
-description: Mark current phase complete and advance to next. Usage: /gsd/transition
+description: "Mark current phase complete and advance to next. Usage: /gsd/transition"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

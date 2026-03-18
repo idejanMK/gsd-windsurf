@@ -1,5 +1,5 @@
 ---
-description: Validate .planning/ directory integrity and report actionable issues. Usage: /gsd/health [--repair]
+description: "Validate .planning/ directory integrity and report actionable issues. Usage: /gsd/health [--repair]"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

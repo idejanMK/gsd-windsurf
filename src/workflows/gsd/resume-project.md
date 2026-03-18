@@ -1,5 +1,5 @@
 ---
-description: Restore full project context and resume work. Usage: /gsd/resume-project
+description: "Restore full project context and resume work. Usage: /gsd/resume-project"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

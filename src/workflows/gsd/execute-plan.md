@@ -1,5 +1,5 @@
 ---
-description: Execute a single phase plan (PLAN.md) and create SUMMARY.md. Usually invoked by execute-phase, but can be run standalone. Usage: /gsd/execute-plan [phase] [plan]
+description: "Execute a single phase plan (PLAN.md) and create SUMMARY.md. Usually invoked by execute-phase, but can be run standalone. Usage: /gsd/execute-plan [phase] [plan]"
 ---
 
 <!-- GSD_HOME=~/.codeium/windsurf/get-shit-done -->

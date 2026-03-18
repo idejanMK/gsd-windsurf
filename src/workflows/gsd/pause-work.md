@@ -1,5 +1,5 @@
 ---
-description: Create a .continue-here.md handoff file to preserve work state across sessions. Usage: /gsd/pause-work
+description: "Create a .continue-here.md handoff file to preserve work state across sessions. Usage: /gsd/pause-work"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

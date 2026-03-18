@@ -1,5 +1,5 @@
 ---
-description: Analyze codebase and produce structured documents in .planning/codebase/. Usage: /gsd/map-codebase
+description: "Analyze codebase and produce structured documents in .planning/codebase/. Usage: /gsd/map-codebase"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

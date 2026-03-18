@@ -1,5 +1,5 @@
 ---
-description: Orchestrate parallel debug role-switches to investigate UAT gaps and find root causes. Usually invoked by verify-work.
+description: "Orchestrate parallel debug role-switches to investigate UAT gaps and find root causes. Usually invoked by verify-work."
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

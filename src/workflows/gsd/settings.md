@@ -1,5 +1,5 @@
 ---
-description: Interactive configuration of GSD workflow settings and model profile. Usage: /gsd/settings
+description: "Interactive configuration of GSD workflow settings and model profile. Usage: /gsd/settings"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

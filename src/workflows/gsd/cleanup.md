@@ -1,5 +1,5 @@
 ---
-description: Archive accumulated phase directories from completed milestones into .planning/milestones/. Usage: /gsd/cleanup
+description: "Archive accumulated phase directories from completed milestones into .planning/milestones/. Usage: /gsd/cleanup"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

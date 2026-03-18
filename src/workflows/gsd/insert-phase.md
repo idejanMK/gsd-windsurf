@@ -1,5 +1,5 @@
 ---
-description: Insert a decimal phase for urgent work between existing integer phases. Usage: /gsd/insert-phase <after> <description>
+description: "Insert a decimal phase for urgent work between existing integer phases. Usage: /gsd/insert-phase <after> <description>"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

@@ -1,5 +1,5 @@
 ---
-description: Start a new milestone cycle for an existing project. Brownfield equivalent of new-project. Usage: /gsd/new-milestone
+description: "Start a new milestone cycle for an existing project. Brownfield equivalent of new-project. Usage: /gsd/new-milestone"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

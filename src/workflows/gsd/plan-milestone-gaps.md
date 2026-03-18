@@ -1,5 +1,5 @@
 ---
-description: Create phases to close gaps identified by /gsd/audit-milestone. Usage: /gsd/plan-milestone-gaps
+description: "Create phases to close gaps identified by /gsd/audit-milestone. Usage: /gsd/plan-milestone-gaps"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

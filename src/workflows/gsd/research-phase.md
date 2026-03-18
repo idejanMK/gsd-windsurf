@@ -1,5 +1,5 @@
 ---
-description: Research how to implement a phase. Standalone research command. Usage: /gsd/research-phase [phase]
+description: "Research how to implement a phase. Standalone research command. Usage: /gsd/research-phase [phase]"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

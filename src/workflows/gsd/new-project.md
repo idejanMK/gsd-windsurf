@@ -1,5 +1,5 @@
 ---
-description: Initialize a new project — questioning, research, requirements, roadmap. Usage: /gsd/new-project [--auto]
+description: "Initialize a new project — questioning, research, requirements, roadmap. Usage: /gsd/new-project [--auto]"
 ---
 
 <!-- GSD_HOME=~/.codeium/windsurf/get-shit-done | auto: --auto skips questioning, uses Step 2a config, runs Steps 6-9. Requires idea doc. -->

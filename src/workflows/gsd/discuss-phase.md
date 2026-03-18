@@ -1,5 +1,5 @@
 ---
-description: Extract implementation decisions for a phase before planning. Usage: /gsd/discuss-phase [phase] [--auto]
+description: "Extract implementation decisions for a phase before planning. Usage: /gsd/discuss-phase [phase] [--auto]"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

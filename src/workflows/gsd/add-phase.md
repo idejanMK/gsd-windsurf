@@ -1,5 +1,5 @@
 ---
-description: Add a new phase to the end of the current milestone roadmap. Usage: /gsd/add-phase <description>
+description: "Add a new phase to the end of the current milestone roadmap. Usage: /gsd/add-phase <description>"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->

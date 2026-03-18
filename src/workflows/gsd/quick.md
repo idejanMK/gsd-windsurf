@@ -1,5 +1,5 @@
 ---
-description: Execute small, ad-hoc tasks with GSD guarantees (atomic commits, STATE.md tracking). Usage: /gsd/quick [description] [--full]
+description: "Execute small, ad-hoc tasks with GSD guarantees (atomic commits, STATE.md tracking). Usage: /gsd/quick [description] [--full]"
 ---
 
 <!-- GSD_HOME = ~/.codeium/windsurf/get-shit-done -->
